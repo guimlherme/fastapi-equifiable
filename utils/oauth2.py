@@ -1,4 +1,4 @@
-#from jose import JWTError, jwt
+from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from fastapi import HTTPException, status
 from utils.constants import ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
@@ -62,24 +62,24 @@ class TokenManagement:
         Raises:
             HTTPException: If the token is invalid.
         """
-        #try:
+        try:
             # Decoding the token.
-            #payload = jwt.decode(token, self.secret_key, algorithms=[ALGORITHM])
+            payload = jwt.decode(token, self.secret_key, algorithms=[ALGORITHM])
 
-        id: str = payload.get('id')
-        str(payload.get('kind'))
+            id: str = payload.get('id')
+            str(payload.get('kind'))
 
-        # Checking if the id or kind is None.
-        if id is None or kind is None:
+            # Checking if the id or kind is None.
+            if id is None or kind is None:
+                raise credentials_exception
+
+            # Checking if the kind in the token matches the expected kind.
+            if kind != str(payload.get('kind')):
+                raise credentials_exception
+
+            return id
+        except JWTError:
             raise credentials_exception
-
-        # Checking if the kind in the token matches the expected kind.
-        #if kind != str(payload.get('kind')):
-            raise credentials_exception
-
-        return id
-    #except JWTError:
-            #raise credentials_exception
 
     def get_token_data(self, token: str, kind: str):
 

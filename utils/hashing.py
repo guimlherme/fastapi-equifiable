@@ -1,4 +1,4 @@
-#from passlib.context import CryptContext
+from passlib.context import CryptContext
 
 
 class Hashing:
@@ -28,7 +28,7 @@ class Hashing:
         """
 
         # Initialize CryptContext with bcrypt hashing scheme
-        #self.context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        self.context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
     def hash_password(self, password):
         """
