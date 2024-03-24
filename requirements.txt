@@ -7,4 +7,4 @@ passlib
 uvicorn
 python-jose
 python-multipart
-pytdantic[email]
+pydantic[email]
