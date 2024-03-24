@@ -3,3 +3,8 @@ firebase_admin==6.5.0
 pydantic==2.6.4
 python-dotenv==1.0.1
 Requests==2.31.0
+passlib
+uvicorn
+python-jose
+python-multipart
+pytdantic[email]

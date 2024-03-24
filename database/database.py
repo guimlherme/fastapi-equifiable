@@ -15,7 +15,9 @@ def connect_to_database():
 
     """
     # Convert the string back to a JSON object
-    credentials = '/credentials/credentials.json'
+    encoded_key = os.getenv("ENCODED_KEY")[2:-1]
+    
+    credentials = json.loads(base64.b64decode(encoded_key).decode('utf-8'))
     # Get the Firebase database URL from environment variables
     database_url = os.getenv('DATABASE_URL')
     # Initialize a credential object using the Firebase certificate at the path we obtained earlier
